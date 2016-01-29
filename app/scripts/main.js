@@ -15,10 +15,8 @@ function get(url){
 
 function getSummonerByName(summonerName, region){
 	var response = get("https://na.api.pvp.net/api/lol/" + region + "/v1.4/summoner/by-name/" + summonerName + key);
-	//console.log(response.id);
-	console.log(response);
-	console.log(response.id);
-	console.log(response['id']);
+	var id = response[summonerName.toLowerCase()].id; 
+	console.log(id);
 };
 
 $('.search').click(function () {
