@@ -18,7 +18,6 @@ function getSummonerID(summonerName, region){
 	var response = get(baseUrl + region + "/v1.4/summoner/by-name/" + summonerName + "?" + key);
 	var summonerName = (summonerName.toLowerCase()).split(' ').join('');
 	var id = response[summonerName].id; 
-	console.log(id);
 	return id;
 };
 
@@ -26,10 +25,14 @@ function getSummonerID(summonerName, region){
 function getRankedStats(summonerID, region){
 	var response = get(baseUrl + region + "/v1.3/stats/by-summoner/" + summonerID + "/summary?season=SEASON2016&" + key);
 	var allStats = response['playerStatSummaries'];
-	// ranked stats are index 5
-	var rankedStats = allStats[5];
-	console.log(allStats);
-}
+	var rankedStats;
+	for(var type in allStats){
+		if(allStats[type].playerStatSummaryType === 'RankedSolo5x5'){
+			rankedStats = allStats[type];
+		}
+	}
+	return rankedStats;
+};
 
 
 $('.search').click(function () {
