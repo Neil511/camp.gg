@@ -16,7 +16,8 @@ function get(url){
 // Uses a summoner name to fetch summoner object and get summoner ID
 function getSummonerID(summonerName, region){
 	var response = get(baseUrl + region + "/v1.4/summoner/by-name/" + summonerName + "?" + key);
-	var id = response[summonerName.toLowerCase()].id; 
+	var summonerName = (summonerName.toLowerCase()).split(' ').join('');
+	var id = response[summonerName].id; 
 	console.log(id);
 	return id;
 };
@@ -25,15 +26,9 @@ function getSummonerID(summonerName, region){
 function getRankedStats(summonerID, region){
 	var response = get(baseUrl + region + "/v1.3/stats/by-summoner/" + summonerID + "/summary?season=SEASON2016&" + key);
 	var allStats = response['playerStatSummaries'];
+	// ranked stats are index 5
+	var rankedStats = allStats[5];
 	console.log(allStats);
-	var i = 0;
-	for(var x = 0; x < 10; x++){
-		i++;
-		console.log(i);
-		if(allStats[x].playerStatSummaryType === 'RankedSolo5x5'){
-			console.log("Found it!");
-		}
-	}
 }
 
 
