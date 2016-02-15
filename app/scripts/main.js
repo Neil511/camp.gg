@@ -50,3 +50,12 @@ $(document).ready( function (){
     });
 
 });
+
+
+/*
+    Control Flow
+    1. Get summoner name from search bar
+    2. Turn summoner name into ID (getSummonerID)
+    3. Get player's current game (getCurrentGame)
+    4. Get all player object's into an array and process their stats (all other functions)
+*/
