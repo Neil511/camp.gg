@@ -57,11 +57,14 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: .1rem solid #e5e5e5;
-  background-image: url('images/hero.jpg');
+  background: transparent url('../images/hero.jpg') no-repeat center center / cover;
+
   .btn {
+    background-color: rgba(#fff, .2);
+    border: none;
     font-size: 2.1rem;
     padding: 1.5rem 2.5rem;
-    margin: 2.0rem;
+    margin-top: 4rem;
   }
 }
 
@@ -95,6 +98,10 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+    color: #fff;
+    font: 700 "Helvetica", Arial, Sans-serif;
+
+
   }
 }
 
