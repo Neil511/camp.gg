@@ -7,12 +7,10 @@ $(document).ready( function (){
     var teamA, teamB = [];
 
     function get(url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', baseUrl + url + key, false);
-        //xhr.setRequestHeader('Origin', 'https://developer.riotgames.com');
-        xhr.send(null);
-        //console.log('GOT: ' + xmr.response);
-        return JSON.parse(xhr.response);
+        return JSON.parse($.get(baseUrl + url + key, function (data, status){
+            console.log('GET Request status: ' + status);
+            console.log(data);
+        }));
     }
 
     // Uses a summoner name to fetch summoner object and get summoner ID
