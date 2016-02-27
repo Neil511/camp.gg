@@ -7,14 +7,23 @@ $(document).ready( function (){
     var teamA, teamB = [];
 
     function get(url) {
-        return JSON.parse($.get(baseUrl + url + key, function (data, status){
-            console.log('GET Request status: ' + status);
+        var response;
+        $.ajax({
+            url: baseUrl + url + key,
+            success: function(data) {
+                console.log('GET Request Status: ' + status);
             console.log(data);
-        }));
+            response = data;
+            },
+            async: false
+        });
+
+        return response;
     }
 
     // Uses a summoner name to fetch summoner object and get summoner ID
     function getSummonerID(summonerName) {
+        console.log("Getting summonerid...");
         var response = get(region + '/v1.4/summoner/by-name/' + summonerName + '?');
         summonerName = (summonerName.toLowerCase()).split(' ').join('');
         var id = response[summonerName].id;
@@ -24,6 +33,7 @@ $(document).ready( function (){
 
     // Get's ranked stats by summoner id
     function getRankedStats(summonerID) {
+        console.log("Getting ranked stats...");
         var response = get(region + '/v1.3/stats/by-summoner/' + summonerID + '/summary?season=SEASON2016&');
         var allStats = response.playerStatSummaries;
         var rankedStats;
@@ -38,6 +48,7 @@ $(document).ready( function (){
 
     // function that fetches all the users in the player's current game
     function getCurrentGame(summonerName) {
+        console.log("Getting current game...");
         var response = get('/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/' + summonerName + '?');
 
         // get summonerNames of all people in game
@@ -53,7 +64,8 @@ $(document).ready( function (){
 
     $('.search').click(function () {
         console.log($('#searchBar').val());
-        getRankedStats(getSummonerID($('#searchBar').val()));
+        var id = getSummonerID($('#searchBar').val());
+        getRankedStats(id);
     });
 });
 
