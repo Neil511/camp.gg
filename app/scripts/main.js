@@ -15,9 +15,11 @@ $(document).ready( function (){
             console.log(data);
             response = data;
             },
-            async: false
+            async: false,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Access-Control-Allow-Origin', "*");
+            }
         });
-
         return response;
     }
 
@@ -47,9 +49,9 @@ $(document).ready( function (){
     }
 
     // function that fetches all the users in the player's current game
-    function getCurrentGame(summonerName) {
+    function getCurrentGame(summonerID) {
         console.log("Getting current game...");
-        var response = get('/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/' + summonerName + '?');
+        var response = get('/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/' + summonerID + '?');
 
         // get summonerNames of all people in game
         var players = response.participants;
@@ -66,6 +68,7 @@ $(document).ready( function (){
         console.log($('#searchBar').val());
         var id = getSummonerID($('#searchBar').val());
         getRankedStats(id);
+        getCurrentGame(id);
     });
 });
 
