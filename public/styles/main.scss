@@ -1,9 +1,3 @@
-$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-
-// bower:scss
-@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// endbower
-
 html{
   font-size: 10px;
 }
@@ -15,13 +9,12 @@ html{
   padding: 0.2em 0;
 }
 
-/* Space out content a bit */
 body {
+  background-color: #000;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
 .footer {

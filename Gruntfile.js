@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
     // New Gruntfile
     grunt.initConfig({
+
       // Watch files for changes and run tasks
       watch: {
         scripts: {
@@ -9,31 +10,30 @@ module.exports = function(grunt) {
           tasks: ['jshint'],
         },
         sass: {
-          files: ['**/*.scss'],
+          files: ['public/styles/*.scss'],
           tasks: ['sass'],
         },
       },
+
       // Compile Sass to css
       sass: {
         dist: {
-          files: [{
-            expand: true,
-            cwd: '.',
-            src: ['*.scss'],
-            dest: '/styles',
-            ext: '.css'
-          }]
+          files: {
+            'public/styles/main.css': 'public/styles/main.scss'
+          }
         }
       },
+
       // JS linter
       jshint: {
-        all: ['scripts/*.js', 'Gruntfile.js']
+        all: ['pubic/scripts/*.js', 'Gruntfile.js']
       },
       nodemon: {
         dev: {
           script: 'app.js'
         }
       }
+
     });
 
   // Loading all tasks
@@ -41,4 +41,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.registerTask('serve', ['watch', 'sass', 'jshint']);
 };

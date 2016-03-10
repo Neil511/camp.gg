@@ -51,7 +51,9 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-nodemon": "^0.4.1"
+    "grunt-nodemon": "^0.4.1",
+    "http": "0.0.0",
+    "morgan": "^1.7.0"
   },
   "repository": {
     "type": "git",
