@@ -1,11 +1,12 @@
 // Required Modules
 var express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    request = require('request'),
     logger = require('morgan'),
     path = require('path'),
     url = require('url'),
     http = require('http');
-
-var app = require('express')();
 
 // Mime types Obj
 var mimeTypes = {
@@ -23,6 +24,8 @@ http.createServer(app);
 // Middleware
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Routes
 app.get('/', function(req, res){

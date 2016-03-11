@@ -41,5 +41,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-nodemon');
-  grunt.registerTask('serve', ['watch', 'sass', 'jshint']);
+  grunt.registerTask('serve', ['sass', 'jshint', 'watch']);
 };
