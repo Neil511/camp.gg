@@ -32,6 +32,26 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+// var options = {
+//     protocol: 'http:',
+//     host: 'na.api.pvp.net',
+//     path: '/api/lol/na/v1.4/summoner/by-name/Nubsee?api_key=23a00ef6-0a77-4aa2-b278-8d402f4e720c',
+//     host: 'wwww.google.com',
+//     headers: {
+//         'User-Agent': 'Riot-Games-Developer-Portal',
+//         'Accept-Language': 'en-US',
+//         'Accept-Charset': 'ISO-8859-1,utf-8',
+//         'Origin': 'https://developer.riotgames.com'
+//     }
+// };
+
+request("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Nubsee?api_key=23a00ef6-0a77-4aa2-b278-8d402f4e720c"
+, function(err, res, body){
+    if(!err && res.statusCode == 200){
+        console.log(body);
+    }
+})
+
 app.listen(3000, function(){
   console.log('listening on *:3000');
 });
